@@ -60,7 +60,7 @@ def download_raw_network_data(RAW_NETWORK, bbox):
     response = requests.post(
         "https://overpass-api.de/api/interpreter", headers=headers, data=data
     )
-    with open("../data/" + RAW_NETWORK, "w") as f:
+    with open(RAW_NETWORK, "w") as f:
         f.write(response.text)
 
 

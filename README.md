@@ -182,6 +182,13 @@ The framework has been tested on **SUMO 1.13.0** and **Python 3.8** on both Ubun
    python runSim.py munich
    ```
 
+## Other SUMO-related tasks (optional):
+### Network download:
+   ```sh
+   cd src/helpers
+   sh run_download.sh
+   ```
+
 ## Citation
 
 If you use these codes in your work, kindly cite the following preprint:

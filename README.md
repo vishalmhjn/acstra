@@ -12,7 +12,7 @@
   <img src="resources/munich_network_speeds.gif" alt="Traffic Visualization" width="500"/>
 </p>
 
-## Overview
+## 1. Overview
 
 This repository includes code for:
 
@@ -25,7 +25,7 @@ This repository includes code for:
 - **Utilities**: For preparing and processing SUMO input files, such as network downloading, trip filtering, adding detectors, and file format conversion.
 - **Plotting Tools**.
 
-## Framework
+## 2. Framework
 
 The platform follows a step-wise approach for sequential calibration of:
 
@@ -50,7 +50,7 @@ This platform can calibrate two types of scenarios:
   - Routing for trips based on the route-choice algorithm.
   - Dynamic network conditions, traffic propagation, and re-routing.
 
-## Architecture
+## 3. Architecture
 
 <p align="center">
 <img src="resources/architecture.png" alt="architecture" width="500" align="center"/>
@@ -65,7 +65,7 @@ This platform can calibrate two types of scenarios:
 - **Link Sensors**: A file specifying the properties (location and data collection frequency) of edge or link sensors [(Example)](munich/additional.add.xml).
 - **Traffic Analysis Zones**: Mapping between origin-destination zones and network edges [(Example)](munich/tazes.taz.xml).
 
-## Custom Synthetic Scenario with SUMO
+## 4. Custom Synthetic Scenario with SUMO
 
 For a custom synthetic scenario, the following process is followed:
 
@@ -73,7 +73,7 @@ For a custom synthetic scenario, the following process is followed:
 2. Subsequently, the true demand is perturbed by the addition of bias and variance.
 3. Perturbed demand is simulated, and corresponding simulation sensor measurements are compared with the "_real sensor measurements_." Based on the discrepancy between real and simulated data, the calibrator aims to recover the true demand matrix.
 
-## Custom Real Scenario with SUMO
+## 5. Custom Real Scenario with SUMO
 
 For a real scenario, you can use real sensor data such as link volumes or link speeds. These measurements could be obtained from open data sources, traffic operator websites, or city open data portals. In this case, additional input is needed to use the observed counts as an input:
 
@@ -81,7 +81,7 @@ For a real scenario, you can use real sensor data such as link volumes or link s
 
 2. In a real scenario, the true demand is not known. What you have is an initial demand matrix, which is simulated. Corresponding simulation sensor measurements are compared with the real sensor measurements. Based on the discrepancy between real and simulated data, the calibrator aims to recover the true demand matrix.
 
-## Requirements
+## 6. Requirements
 
 The framework has been tested on **SUMO 1.13.0** and **Python 3.8** on both Ubuntu 18.04 and macOS 13.2. To set up your environment, follow these steps:
 
@@ -109,9 +109,9 @@ The framework has been tested on **SUMO 1.13.0** and **Python 3.8** on both Ubun
    pip install -r requirements.txt
    ```
 
-## Execution
+## 7. Execution
 
-### Running Analytical or Static Simulation Scenarios
+### I. Running Analytical or Static Simulation Scenarios
 
 1. Set the current working directory to [src/wrapper](src/wrapper/) in the Command Line Interface (CLI):
 
@@ -131,7 +131,7 @@ The framework has been tested on **SUMO 1.13.0** and **Python 3.8** on both Ubun
 
 5. Outputs are stored in [synthetic_sims](synthetic_sims/) folder
 
-### Running Black-box or Dynamic Simulation Scenarios with Synthetic Counts
+### II. Running Black-box or Dynamic Simulation Scenarios with Synthetic Counts
 
 1. First, specify the paths in [paths](src/core/paths.py) and [parameters](src/core/params.py). Please note that the platform has not been tested on Windows OS, so paths may need to be adapted.
 
@@ -157,7 +157,7 @@ The framework has been tested on **SUMO 1.13.0** and **Python 3.8** on both Ubun
 
 6. Outputs are stored in [munich](munich/) folder
 
-### Following procedure for running <b>Black-box or dynamic simulation </b> scenarios with real-world counts:
+### III. Following procedure for running <b>Black-box or dynamic simulation </b> scenarios with real-world counts:
 
 1. Specify the paths to real data in [wrapper.sh](src/wrapper/wrapper.sh). For example:
 
@@ -182,20 +182,21 @@ The framework has been tested on **SUMO 1.13.0** and **Python 3.8** on both Ubun
    python runSim.py munich
    ```
 
-## Other SUMO-related tasks (optional):
+## 8. Other SUMO-related tasks (optional):
 ### Network download:
+Download raw OSM data and convert it into SUMO network using netconvert. Specify the extent of the network in the form of bounding box in [run_download.sh](src/helpers/run_download.sh). Specify the correct parameters for network building in the same file.
    ```sh
    cd src/helpers
    sh run_download.sh
    ```
 
-## Citation
+## 9. Citation
 
 If you use these codes in your work, kindly cite the following preprint:
 
 Mahajan, V., Cantelmo, G., and Antoniou, C, Towards automated calibration of large-scale traffic simulations, [preprint_v2](https://mediatum.ub.tum.de/doc/1701188/1701188.pdf), 2023.
 
-## Acknowledgements
+## 10. Acknowledgements
 
 1. SUMO: https://github.com/eclipse/sumo
 2. Noisyopt library: https://github.com/andim/noisyopt
